@@ -24,7 +24,7 @@ func (ds *DaySteps) Parse(datastring string) (err error) {
 	}
 	steps, err := strconv.Atoi(datastringSlice[0])
 	if err != nil {
-		return errors.New("steps parse error")
+		return fmt.Errorf("conversion error: %w", err)
 	}
 	if steps <= 0 {
 		return errors.New("steps <= 0")
@@ -32,7 +32,7 @@ func (ds *DaySteps) Parse(datastring string) (err error) {
 	ds.Steps = steps
 	duration, err := time.ParseDuration(datastringSlice[1])
 	if err != nil {
-		return errors.New("duration parse error")
+		return fmt.Errorf("conversion error: %w", err)
 	}
 	if duration <= 0.0 {
 		return errors.New("duration <= 0.0")

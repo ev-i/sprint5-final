@@ -25,7 +25,7 @@ func (t *Training) Parse(datastring string) (err error) {
 	}
 	steps, err := strconv.Atoi(datastringSlice[0])
 	if err != nil {
-		return errors.New("steps parse error")
+		return fmt.Errorf("conversion error: %w", err)
 	}
 	if steps <= 0 {
 		return errors.New("steps <= 0")
@@ -34,7 +34,7 @@ func (t *Training) Parse(datastring string) (err error) {
 	t.TrainingType = datastringSlice[1]
 	duration, err := time.ParseDuration(datastringSlice[2])
 	if err != nil {
-		return errors.New("duration parse error")
+		return fmt.Errorf("conversion error: %w", err)
 	}
 	if duration <= 0.0 {
 		return errors.New("duration <= 0.0")
